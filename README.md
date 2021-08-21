@@ -14,15 +14,18 @@ pip install electricity_consumption
 
 ## Quickstart
 
-```python
-import electricity_consumption
-```
+### Influx DB settings on first run
 
-## Supported Python versions
+- Modify INFLUXDB_PATH from `influx_db_config.mk` file
+- Modify other influxdb variables from `influx_db_config.mk` file
+- Run `make run-influxdb` to instantiate docker container
+- Go to http://localhost:8086 and retrieve token from Data/token and copy it to `electricity_consumption/constants.py`
 
-## Dependencies
+## Dev Section
 
-## Using tox to run linters and tests
+### Dependencies
+
+### Using tox to run linters and tests
 
 - make sure you have created your `pip.conf` with proper JFrog credentials
 - install tox: `pip install .[dev]` (This makes sure you install the currently supported version for `tox`)
@@ -36,7 +39,7 @@ import electricity_consumption
 - run all the tests with all supported python interpreters: `tox`
 - (Use with caution) run all `tox` environments at once (it will prompt you for JFrog credentials for the release, do not give them): `tox -e ALL`
 
-## Using pre-commit hooks
+### Using pre-commit hooks
 
 When contributing to this repository, you can activate pre-commit hooks to run linters on modified modules before you make a commit.
 
@@ -47,7 +50,7 @@ When contributing to this repository, you can activate pre-commit hooks to run l
 - In order to bypass pre-commit checks on one commit: `git commit -m "No checks" --no-verify`
 - In order to bypass pre-commit forever: `pre-commit uninstall`
 
-## Process to release a new version of your package
+### Process to release a new version of your package
 
 - Create a dedicated branch (`bump-to-version-X.XX.XX`) and associated Pull Request on GitHub
 - Update the version number everywhere in you project. Most of the time this means `setup.py`, but also `cruft.json` if you have used cruft to create/update the project.
@@ -56,7 +59,7 @@ When contributing to this repository, you can activate pre-commit hooks to run l
 - From master, in the GitHub web interface, create a new tag with the version number
 - Deploy to JFrog is automated, enjoy !
 
-## Working with `pylint`
+### Working with `pylint`
 
 `pylint` is a great tool to have shared best practices in the team and to help everyone produce better code.
 
@@ -78,7 +81,7 @@ We recommend to try to disable rules locally first before removing them globally
 
   If you want to disable a message or your entire project, you can edit the `pylint` config directly in `pylintrc`.
 
-## Working with `mypy`
+### Working with `mypy`
 
 `mypy` is a great tool for static type checking of a library or service, however it might be too cumbersome for a client project.
 
@@ -89,7 +92,7 @@ Some resources to help you :
 - Locally silencing `mypy` the proper way : [Spurious errors and locally silencing the checker](https://mypy.readthedocs.io/en/stable/common_issues.html#spurious-errors-and-locally-silencing-the-checker)
 - Other solutions to common issues : [Common issues and solutions](https://mypy.readthedocs.io/en/stable/common_issues.html#spurious-errors-and-locally-silencing-the-checker)
 
-## Working with the spell checker
+### Working with the spell checker
 
 - The spell checker used for this project is [pyenchant](https://github.com/pyenchant/pyenchant) and it behaves pretty much as a pylint plugin.
 - The only notable difference is you probably have to install a system library.
@@ -101,7 +104,7 @@ Some resources to help you :
 - Run `tox -e spelling-update` to append ALL the unknown words to the end of `spelling/spelling.txt`.
 - Pick the words you would like to whitelist, run `tox -e spelling` to check and also to sort the list, then commit the new whitelist at `spelling/spelling.txt`
 
-## Recommended Notebook setup
+### Recommended Notebook setup
 
 - Outside of the project folder, create a virtual environment dedicated to Jupyter Lab that will be used to launch Jupyter from the terminal for all your projects:
   ```bash
