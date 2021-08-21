@@ -1,9 +1,4 @@
-INFLUXDB_PATH := "/Users/vincentlemeur/Dropbox/Vincent/Work & Science/Databases/electric"
-DOCKER_INFLUXDB_INIT_MODE := "setup"
-DOCKER_INFLUXDB_INIT_USERNAME := "my-user"
-DOCKER_INFLUXDB_INIT_PASSWORD := "my-password"
-DOCKER_INFLUXDB_INIT_ORG := "my-org"
-DOCKER_INFLUXDB_INIT_BUCKET := "my-bucket"
+include influx_db_config.mk
 
 run-all:
 	@make run-influxdb
@@ -17,6 +12,7 @@ run-influxdb:
       -e DOCKER_INFLUXDB_INIT_PASSWORD=$(DOCKER_INFLUXDB_INIT_PASSWORD) \
       -e DOCKER_INFLUXDB_INIT_ORG=$(DOCKER_INFLUXDB_INIT_ORG) \
       -e DOCKER_INFLUXDB_INIT_BUCKET=$(DOCKER_INFLUXDB_INIT_BUCKET) \
+      -e INFLUXDB_ADMIN_ENABLED=true \
       influxdb:2.0
 
 clean-influxdb:

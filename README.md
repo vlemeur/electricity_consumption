@@ -14,6 +14,13 @@ pip install electricity_consumption
 
 ## Quickstart
 
+### Influx DB settings on first run
+
+- Modify INFLUXDB_PATH from `influx_db_config.mk` file
+- Modify other influxdb variables from `influx_db_config.mk` file
+- Run `make run-influxdb` to instantiate docker container
+- Go to http://localhost:8086 and retrieve token from Data/token and copy it to `electricity_consumption/constants.py`
+
 ## Dev Section
 
 ### Dependencies

@@ -3,5 +3,6 @@
   "python.testing.nosetestsEnabled": false,
   "python.testing.pytestEnabled": true,
   "python.linting.pylintEnabled": true,
-  "autoDocstring.docstringFormat": "numpy"
+  "autoDocstring.docstringFormat": "numpy",
+  "python.pythonPath": "/Users/vincentlemeur/Documents/Git/electricity-consumption/venv/bin/python"
 }
