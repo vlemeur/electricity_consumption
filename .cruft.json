@@ -1,0 +1,21 @@
+{
+  "template": "git@github.com:vlemeur/vlm-coockiecutter.git",
+  "commit": "383ac68d8b4e9a9228b5f6e13f037638a6c6793a",
+  "checkout": null,
+  "context": {
+    "cookiecutter": {
+      "author": "Vincent LE MEUR",
+      "email": "vincenlemeur@gmail.com",
+      "project_folder": "electricity-consumption",
+      "package_name": "electricity_consumption",
+      "repository_url": "https://github.com/vlemeur/electricity_consumption",
+      "project_short_description": "Personal Electricity consumption analysis",
+      "data_analysis": "y",
+      "check_dependencies_updates": "y",
+      "documentation": "y",
+      "version": "0.0.0",
+      "_template": "git@github.com:vlemeur/vlm-coockiecutter.git"
+    }
+  },
+  "directory": null
+}
