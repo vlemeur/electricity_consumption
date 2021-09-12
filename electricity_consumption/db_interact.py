@@ -3,7 +3,7 @@
 
 from influxdb_client import InfluxDBClient
 
-from electricity_consumption.constantes import INFLUXDB_TOKE, INFLUXDB_URL
+from electricity_consumption.constants import INFLUXDB_TOKE, INFLUXDB_URL
 from electricity_consumption.paths import PATH_INFLUXDB_MK_FILE
 from electricity_consumption.utils import get_variables_from_mk_file
 
