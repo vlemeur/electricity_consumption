@@ -23,5 +23,5 @@ def get_variables_from_mk_file(path_mk_file: Path) -> dict:
     dict_variables = {}
     for line in lines:
         name, value = line.split(" := ")
-        dict_variables[name] = value
+        dict_variables[name] = value.replace("\n", "").replace('"', "")
     return dict_variables

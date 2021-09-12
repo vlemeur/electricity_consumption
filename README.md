@@ -20,6 +20,7 @@ pip install electricity_consumption
 - Modify other influxdb variables from `influx_db_config.mk` file
 - Run `make run-influxdb` to instantiate docker container
 - Go to http://localhost:8086 and retrieve token from Data/token and copy it to `electricity_consumption/constants.py`
+- Creates manualy a new bucket called "electric" in Data field of Influxdb interface
 
 ## Dev Section
 
