@@ -297,6 +297,7 @@ yaml
 
 # Personal - additional accepted words
 
+Influxdb
 cookiecutter
 csv
 dataframe
