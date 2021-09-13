@@ -2,6 +2,7 @@
 """
 
 from pathlib import Path
+from typing import Optional
 
 import pandas as pd
 from influxdb_client import InfluxDBClient, Point, WritePrecision
@@ -75,4 +76,41 @@ def upload_df_to_influxdb(df: pd.DataFrame):
     ]
     write_api = client.write_api(write_options=SYNCHRONOUS)
     write_api.write(DICT_INFLUXDB["DOCKER_INFLUXDB_INIT_BUCKET"], DICT_INFLUXDB["DOCKER_INFLUXDB_INIT_ORG"], sequence)
+    # Closing connections
+    write_api.__del__()
+    client.__del__()
     logger.info("Data upload finished")
+
+
+def get_df_from_influxdb(
+    bucket: Optional[str] = "electric",
+    measurement: Optional[str] = "electric consumption",
+    distance_minutes: Optional[str] = "43800",
+) -> pd.DataFrame:
+    """Returns Pandas DataFrame with input measurement from Influxdb
+
+    Parameters
+    ----------
+    bucket : str, optional
+        Name of the bucket to request, by default "electric"
+    measurement : str, optional
+        Name of measurement to request, by default "electric consumption"
+    distance_minutes : str, optional
+        Time in minutes to get request from, by default "43800"
+
+    Returns
+    -------
+    pd.DataFrame
+        Pandas DataFrame with input measurement from Influxdb
+    """
+    query = (
+        f'from(bucket: "{bucket}") '
+        f"|> range(start:-{distance_minutes}m, stop: now()) "
+        f' |> filter(fn: (r) => r._measurement == "{measurement}")'
+    )
+
+    client = instantiate_influx_db()
+    df = client.query_api().query_data_frame(org=DICT_INFLUXDB["DOCKER_INFLUXDB_INIT_ORG"], query=query)
+    client.__del__()
+    df.index = pd.to_datetime(df["_time"])
+    return df[["_value"]].rename(columns={"_value": measurement})
